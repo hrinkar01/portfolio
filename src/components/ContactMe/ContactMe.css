@@ -1,0 +1,31 @@
+.contactme {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: .5rem;
+}
+
+.contactme img {
+    position: relative;
+    background: transparent;
+    margin-top: .5rem;
+    margin: 0.1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+
+}
+
+@media (max-width: 375px) { 
+    .contactme {
+        text-align: center;
+
+    }
+    .contactme img {
+        position: relative;
+        background: transparent;
+        margin-top: .5rem;
+        margin: 0.1rem;
+        width: 2rem;
+        height: 2rem;
+    
+    }
+}

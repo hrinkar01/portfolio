@@ -1,0 +1,60 @@
+.project__container {
+    row-gap: 2rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.project__link {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    
+}
+
+.project__img {
+    transition: filter .5s, transform .5s;
+    width: 25rem;
+    height: auto;
+}
+
+.project__icon {
+    position: absolute;
+    top: 1.25rem;
+    right:1.25rem;
+    font-size: 2rem;
+    color: var(--first-color);
+    transition: transfrom .4s;
+}
+
+.project__link:hover .project__img {
+    transform: scale(1.1);
+    filter: none;
+}
+
+.project__link:hover .project__icon {
+    transform: translate(.5rem, -5rem) rotate(-30deg)
+}
+.project-section h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+.project__title {
+    font-size: var(--h2-font-size);
+    margin-bottom: .25rem;
+    text-align: center;
+
+}
+
+.project__subtitle {
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .project-section {
+        position: relative;
+        margin-top: 30rem;
+    }
+}
