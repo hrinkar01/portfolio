@@ -12,7 +12,7 @@ const Hero = () => {
             </div>
 
             <div className="hero-content">
-                <h2>Hrinkar</h2>
+                <h2>Hrinkar bothra</h2>
                 <p>
                     I'm a self-taught Programmer with a strong intrest in Web Development and Cyber Security. <br />
                     Dedicated in learning and improving my Skills and converting Imaginations into Reality. <br />
