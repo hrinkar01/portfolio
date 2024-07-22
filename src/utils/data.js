@@ -1,6 +1,7 @@
 export const SKILLS = [
     {
         title: "Frontend",
+        // icon: "../../assets/images/frontend.png",
         icon: "../../assets/images/frontend.png",
         skills: [
 

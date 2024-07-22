@@ -12,7 +12,7 @@ const Hero = () => {
             </div>
 
             <div className="hero-content">
-                <h2>Hrinkar Bothra</h2>
+                <h2>Hrinkar</h2>
                 <p>
                     I'm a self-taught Programmer with a strong intrest in Web Development and Cyber Security. <br />
                     Dedicated in learning and improving my Skills and converting Imaginations into Reality. <br />
@@ -32,7 +32,7 @@ const Hero = () => {
             <div className="nav-container">
                 <div className="navicon">
                     <a href="#skills-tab" >Skills</a>
-                </div>
+                </div>  
 
                 <div className="navicon">
                     <a href="#project-tab">Projects</a>
