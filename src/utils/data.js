@@ -2,7 +2,7 @@ export const SKILLS = [
     {
         title: "Frontend",
         // icon: "../../assets/images/frontend.png",
-        icon: "./assets/images/frontend.png",
+        icon: "../../assets/images/frontend.png",
         skills: [
 
             { skill: "JavaScript", percentage: "80%" },
@@ -16,7 +16,7 @@ export const SKILLS = [
 
     {
         title: "Backend & Database",
-        icon: "./assets/images/backend.png",
+        icon: "../../assets/images/backend.png",
         skills: [
             { skill: "Node.js", percentage: "75%" },
             { skill: "Express.js", percentage: "65%" },
@@ -30,7 +30,7 @@ export const SKILLS = [
 
     {
         title: "Languages",
-        icon: "./assets/images/languages.png",
+        icon: "../../assets/images/languages.png",
         skills: [
             { skill: "Python", percentage: "80%" },
             { skill: "Bash", percentage: "75%" },
@@ -43,7 +43,7 @@ export const SKILLS = [
 
     {
         title: "Cyber Sec",
-        icon: "./assets/images/hack.png",
+        icon: "../../assets/images/hack.png",
         skills: [
             { skill: "Reconnaisance", percentage: "75%" },
             { skill: "API Hacking", percentage: "70%" },
@@ -56,7 +56,7 @@ export const SKILLS = [
     
     {
         title: "Tools",
-        icon: "./assets/images/tools.png",
+        icon: "../../assets/images/tools.png",
         skills: [
             { skill: "Linux", percentage: "95%" },
             { skill: "Visual Studio Code", percentage: "95%" },
@@ -70,7 +70,7 @@ export const SKILLS = [
 
     {
         title: "Other",
-        icon: "./assets/images/puzzle.png",
+        icon: "../../assets/images/puzzle.png",
         skills: [
             { skill: "Guitar", percentage: "90%" },
             { skill: "Art & Craft", percentage: "80%" },
