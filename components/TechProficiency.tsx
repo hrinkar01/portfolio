@@ -13,10 +13,9 @@ const CATEGORIES: Category[] = [
     title: "Languages",
     skills: [
       { name: "Python", level: 5 },
+      { name: "C", level: 3 },
       { name: "C++", level: 4 },
-      { name: "C++", level: 4 },
-      { name: "JavaScript", level: 4 },
-      { name: "Bash", level: 3 },
+      { name: "Assembly", level: 3},
     ],
   },
   {
@@ -25,13 +24,15 @@ const CATEGORIES: Category[] = [
       { name: "NumPy / Pandas", level: 4 },
       { name: "Scikit-learn", level: 4 },
       { name: "Matplotlib", level: 3 },
-      { name: "TensorFlow", level: 3 },
       { name: "PyTorch", level: 3 },
+      
     ],
   },
   {
     title: "Frontend",
     skills: [
+      { name: "HTML ", level: 4 },
+      { name: "CSS", level: 4 },
       { name: "React", level: 4 },
       { name: "Next.js", level: 4 },
       { name: "Tailwind CSS", level: 3 },
