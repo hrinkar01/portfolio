@@ -4,7 +4,7 @@ export default function ContactFooter() {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden border-t border-white/10"
+      className="relative overflow-hidden"
     >
       {/* Technical background */}
       <div
