@@ -95,7 +95,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+//import Image from "next/image";
 import SideNav from "./SideNav";
 import { useScrollProgress, lerp, fadeOpacity } from "./useScrollProgress";
 
@@ -202,12 +202,9 @@ export default function Hero() {
           }
           className="mx-auto w-full max-w-[260px] sm:max-w-sm lg:max-w-lg"
         >
-          <Image
-            src="/images/isometric-room.png"
+          <img
+            src="/portfolio/images/isometric-room.png"
             alt="Isometric illustration of a workstation with a monitor, guitars, and drum kit"
-            width={900}
-            height={900}
-            priority
             className="w-full drop-shadow-[0_0_40px_rgba(255,106,61,0.15)]"
           />
         </div>
