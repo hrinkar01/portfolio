@@ -223,7 +223,7 @@ export default function Home() {
                 </div>
                 <div className="project-links">
                   <a
-                    href="https://github.com/hrinkar01"
+                    href="https://github.com/hrinkar01/rewind"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="proj-action-btn"
