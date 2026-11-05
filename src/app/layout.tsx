@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Slate & Charcoal",
-  description: "A minimalist developer portfolio with Slate & Charcoal design.",
+  title: "Hrinkar Bothra",
+  description: "Hrinkar Bothra - Software Engineer, SIH '25 Winner, OWASP BLT Contributor.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
