@@ -4,10 +4,10 @@ import { useEffect, useState, useRef, useCallback } from "react";
 
 const ROLES = [
   "SOFTWARE ENGINEER",
-  "Smart India Hackathon'25 WINNER 🏆",
+  "Smart India Hackathon '25 WINNER",
   "OWASP BLT CONTRIBUTOR",
   "IOT & EMBEDDED SYSTEM BUILDER",
-  "GITS IDEATHON'24 WINNER 🏆",
+  "GITS IDEATHON '24 WINNER",
 ];
 
 const SCRAMBLE_GLYPHS = "01#@$%&*!?<>_[]{}/\\=+~^";
@@ -45,11 +45,12 @@ export default function HeroAnimated() {
     clearScrambleTimer();
     roleIndexRef.current = nextIdx;
     const targetText = ROLES[nextIdx];
+    const targetChars = Array.from(targetText);
+    const targetLen = targetChars.length;
     setIsScrambling(true);
 
     let step = 0;
     const totalSteps = 16;
-    const targetLen = targetText.length;
 
     intervalRef.current = setInterval(() => {
       step++;
@@ -58,7 +59,7 @@ export default function HeroAnimated() {
       let res = "";
       for (let i = 0; i < targetLen; i++) {
         if (i < resolved) {
-          res += targetText[i];
+          res += targetChars[i];
         } else {
           res += SCRAMBLE_GLYPHS[Math.floor(Math.random() * SCRAMBLE_GLYPHS.length)];
         }
@@ -81,14 +82,19 @@ export default function HeroAnimated() {
     }
   };
 
-  // Auto-rotate every 3.8 seconds
+  // Initial scramble on mount + auto-rotate every 3.5 seconds
   useEffect(() => {
+    const initialTimer = setTimeout(() => {
+      triggerScramble(0);
+    }, 600);
+
     const autoTimer = setInterval(() => {
       const nextIdx = (roleIndexRef.current + 1) % ROLES.length;
       triggerScramble(nextIdx);
-    }, 3800);
+    }, 3600);
 
     return () => {
+      clearTimeout(initialTimer);
       clearInterval(autoTimer);
       clearScrambleTimer();
     };

@@ -1108,7 +1108,7 @@ a:hover {
 /* Infinite Continuous Auto-Scroll & Manual Scroll Viewport */
 .pr-marquee-viewport {
   position: relative;
-  height: 385px;
+  height: 255px;
   overflow-y: auto;
   overflow-x: hidden;
   mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);

@@ -5,11 +5,10 @@ import { PULL_REQUESTS, PullRequest } from "../../data/pullRequests";
 
 export default function PullRequestsList() {
   const viewportRef = useRef<HTMLDivElement>(null);
-  const firstSetRef = useRef<HTMLDivElement>(null);
-  const isHoveredRef = useRef(false);
-  const isUserScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const posRef = useRef(0);
+  const isManualScrollingRef = useRef(false);
+  const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const isPausedRef = useRef(false);
 
   // High-level impact stats
   const stats = useMemo(() => {
@@ -36,97 +35,79 @@ export default function PullRequestsList() {
     }
   };
 
-  // Continuous auto-glide + seamless bidirectional wrap
+  // Continuous auto-glide with smooth bottom-to-top loop and manual wheel override
   useEffect(() => {
     const el = viewportRef.current;
-    const firstSet = firstSetRef.current;
-    if (!el || !firstSet) return;
+    if (!el) return;
 
-    // Start centered on the second set so user can scroll up or down immediately
-    const initialOffset = firstSet.offsetHeight || 480;
-    el.scrollTop = initialOffset;
-    posRef.current = initialOffset;
+    let rafId: number;
+    const speed = 0.65; // Gentle readable pace
 
-    let animationFrameId: number;
-    const speed = 0.5; // Smooth ~30px per sec auto-glide
+    const step = () => {
+      const node = viewportRef.current;
+      if (node && !isManualScrollingRef.current && !isPausedRef.current) {
+        const maxScroll = node.scrollHeight - node.clientHeight;
 
-    const tick = () => {
-      const currentEl = viewportRef.current;
-      const currentFirstSet = firstSetRef.current;
+        if (maxScroll > 5) {
+          node.scrollTop += speed;
 
-      if (currentEl && currentFirstSet) {
-        const singleSetHeight = currentFirstSet.offsetHeight;
-
-        // Auto advance only when not hovered and not actively scrolled by user
-        if (!isHoveredRef.current && !isUserScrollingRef.current) {
-          posRef.current += speed;
-          currentEl.scrollTop = posRef.current;
-        }
-
-        // Seamless wrap when reaching bottom or top of duplicated sets
-        if (currentEl.scrollTop >= singleSetHeight * 2) {
-          currentEl.scrollTop -= singleSetHeight;
-          posRef.current = currentEl.scrollTop;
-        } else if (currentEl.scrollTop <= 5) {
-          currentEl.scrollTop += singleSetHeight;
-          posRef.current = currentEl.scrollTop;
+          // Reached the bottom
+          if (node.scrollTop >= maxScroll - 2) {
+            isPausedRef.current = true;
+            // Pause 2.5s at bottom so user can read the last items
+            pauseTimerRef.current = setTimeout(() => {
+              if (viewportRef.current) {
+                viewportRef.current.scrollTo({ top: 0, behavior: "smooth" });
+              }
+              // Pause 1s at top before resuming downward glide
+              setTimeout(() => {
+                isPausedRef.current = false;
+              }, 1000);
+            }, 2500);
+          }
         }
       }
 
-      animationFrameId = requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(step);
     };
 
-    animationFrameId = requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(step);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      cancelAnimationFrame(rafId);
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
     };
   }, []);
 
-  // Handle manual scroll (trackpad / mouse wheel) with seamless loop wrap
-  const handleScroll = () => {
-    const el = viewportRef.current;
-    const firstSet = firstSetRef.current;
-    if (!el || !firstSet) return;
-
-    posRef.current = el.scrollTop;
-    const singleSetHeight = firstSet.offsetHeight;
-
-    if (el.scrollTop >= singleSetHeight * 2) {
-      el.scrollTop -= singleSetHeight;
-      posRef.current = el.scrollTop;
-    } else if (el.scrollTop <= 5) {
-      el.scrollTop += singleSetHeight;
-      posRef.current = el.scrollTop;
-    }
-
-    isUserScrollingRef.current = true;
-    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    scrollTimeoutRef.current = setTimeout(() => {
-      isUserScrollingRef.current = false;
-    }, 700);
+  // When user actively wheels or scrolls, grant instant manual control and resume auto-scroll after idle
+  const handleWheel = () => {
+    isManualScrollingRef.current = true;
+    isPausedRef.current = false;
+    if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+    if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+    idleTimerRef.current = setTimeout(() => {
+      isManualScrollingRef.current = false;
+    }, 1800);
   };
 
-  const handleMouseEnter = () => {
-    isHoveredRef.current = true;
-    if (viewportRef.current) {
-      posRef.current = viewportRef.current.scrollTop;
-    }
+  const handlePointerDown = () => {
+    isManualScrollingRef.current = true;
+    isPausedRef.current = false;
+    if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
   };
 
-  const handleMouseLeave = () => {
-    isHoveredRef.current = false;
-    isUserScrollingRef.current = false;
-    if (viewportRef.current) {
-      posRef.current = viewportRef.current.scrollTop;
-    }
+  const handlePointerUp = () => {
+    if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+    idleTimerRef.current = setTimeout(() => {
+      isManualScrollingRef.current = false;
+    }, 1800);
   };
 
   // Render an individual PR Row item
-  const renderRow = (pr: PullRequest, keySuffix: string = "") => (
+  const renderRow = (pr: PullRequest) => (
     <a
-      key={`${pr.id}${keySuffix}`}
+      key={pr.id}
       href={pr.url}
       target="_blank"
       rel="noopener noreferrer"
@@ -192,27 +173,16 @@ export default function PullRequestsList() {
         </div>
       </div>
 
-      {/* Main PR Rows List - Auto-Glides + Smooth Manual Trackpad/Wheel Scroll */}
+      {/* Main PR Rows List - Single Clean Set (No Duplicate PRs) with Active Auto-Glide & Smooth Manual Scroll */}
       <div
         className="pr-marquee-viewport"
         ref={viewportRef}
-        onScroll={handleScroll}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onWheel={handleWheel}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
       >
         <div className="pr-marquee-content">
-          {/* Set 1 */}
-          <div className="pr-marquee-set" ref={firstSetRef}>
-            {PULL_REQUESTS.map((pr) => renderRow(pr))}
-          </div>
-          {/* Set 2 (for seamless loop) */}
-          <div className="pr-marquee-set">
-            {PULL_REQUESTS.map((pr) => renderRow(pr, "-dup1"))}
-          </div>
-          {/* Set 3 (buffer for upward manual scroll) */}
-          <div className="pr-marquee-set">
-            {PULL_REQUESTS.map((pr) => renderRow(pr, "-dup2"))}
-          </div>
+          {PULL_REQUESTS.map((pr) => renderRow(pr))}
         </div>
       </div>
     </div>
