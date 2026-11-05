@@ -3,6 +3,15 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
+
+export const getAssetPath = (path: string) => {
+  if (!path) return "";
+  if (path.startsWith("http://") || path.startsWith("https://")) return path;
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  return `${basePath}${cleanPath}`;
+};
+
 export interface GalleryItem {
   id: string;
   src: string;
@@ -337,7 +346,7 @@ export default function GallerySection() {
               >
                 <div className="gallery-h-img-box" style={{ position: "relative" }}>
                   <Image
-                    src={item.src}
+                    src={getAssetPath(item.src)}
                     alt={item.title}
                     fill
                     sizes="(max-width: 640px) 90vw, 450px"
@@ -373,7 +382,7 @@ export default function GallerySection() {
                 >
                   <div className="gallery-h-img-box" style={{ position: "relative" }}>
                     <Image
-                      src={item.src}
+                      src={getAssetPath(item.src)}
                       alt={item.title}
                       fill
                       sizes="(max-width: 640px) 90vw, 450px"
@@ -467,7 +476,7 @@ export default function GallerySection() {
             {/* Lightbox Image */}
             <div className="lightbox-img-wrapper">
               <Image
-                src={activeItem.src}
+                src={getAssetPath(activeItem.src)}
                 alt={activeItem.title}
                 fill
                 sizes="95vw"
