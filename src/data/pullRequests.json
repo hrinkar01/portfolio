@@ -1,0 +1,98 @@
+[
+  {
+    "id": "blt-66",
+    "number": 66,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-dash",
+    "title": "blt-dash: add ASSETS binding and redirect /dash and /dash/ to root",
+    "url": "https://git.owaspblt.org/BLT/pull/66",
+    "status": "under_review",
+    "date": "Nov 3, 2026",
+    "forge": "ForkMesh"
+  },
+  {
+    "id": "blt-47",
+    "number": 47,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-legacy",
+    "title": "blt-legacy: drop unused cffi pin and upgrade cryptography, aiohttp and pillow",
+    "url": "https://git.owaspblt.org/BLT/pull/47",
+    "status": "approved",
+    "date": "Nov 1, 2026",
+    "forge": "ForkMesh"
+  },
+  {
+    "id": "blt-34",
+    "number": 34,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-tomato",
+    "title": "blt-tomato: support custom funding_url and default_branch for funding files",
+    "url": "https://git.owaspblt.org/BLT/pull/34",
+    "status": "approved",
+    "date": "Oct 28, 2026",
+    "forge": "ForkMesh"
+  },
+  {
+    "id": "blt-22",
+    "number": 22,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-docs",
+    "title": "blt-docs: exclude superpowers from build and update repo metadata (#185)",
+    "url": "https://git.owaspblt.org/BLT/pull/22",
+    "status": "merged",
+    "date": "Oct 25, 2026",
+    "forge": "ForkMesh"
+  },
+  {
+    "id": "blt-7",
+    "number": 7,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-docs",
+    "title": "blt-docs: use pull request instead of merge request and add blt-cron to project map",
+    "url": "https://git.owaspblt.org/BLT/pull/7",
+    "status": "merged",
+    "date": "Oct 22, 2026",
+    "forge": "ForkMesh"
+  },
+  {
+    "id": "owtf-1472",
+    "number": 1472,
+    "repo": "OWASP/owtf",
+    "repoUrl": "https://github.com/owtf/owtf",
+    "subsystem": "core-engine",
+    "title": "Fix startup crash on macOS when spawning worker processes",
+    "url": "https://github.com/owtf/owtf/pull/1472",
+    "status": "open",
+    "date": "Recent",
+    "forge": "GitHub OWASP"
+  },
+  {
+    "id": "owtf-1471",
+    "number": 1471,
+    "repo": "OWASP/owtf",
+    "repoUrl": "https://github.com/owtf/owtf",
+    "subsystem": "security-auth",
+    "title": "fix(settings): ensure user config in local settings.py overrides JWT defaults",
+    "url": "https://github.com/owtf/owtf/pull/1471",
+    "status": "open",
+    "date": "Recent",
+    "forge": "GitHub OWASP"
+  },
+  {
+    "id": "comm-1326",
+    "number": 1326,
+    "repo": "OWASP/www-community",
+    "repoUrl": "https://github.com/OWASP/www-community",
+    "subsystem": "gsoc-docs",
+    "title": "Fixed broken BLT project links in GSoC 2026 ideas page",
+    "url": "https://github.com/OWASP/www-community/pull/1326",
+    "status": "closed",
+    "date": "Closed",
+    "forge": "GitHub OWASP"
+  }
+]
