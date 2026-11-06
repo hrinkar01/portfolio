@@ -346,18 +346,11 @@ export default function Home() {
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
-          <div className="footer-brand">
-            <span className="footer-logo">~/hrinkar</span>
-            <span className="footer-status-dot">●</span>
-            <span className="footer-status-text">All systems operational</span>
-          </div>
           <p className="footer-tagline">
             Designed &amp; Engineered by <strong>Hrinkar Bothra</strong> &middot; Built with Next.js &amp; TypeScript
           </p>
           <div className="footer-meta-row">
             <span>&copy; 2026 Hrinkar Bothra</span>
-            <span className="footer-sep">&middot;</span>
-            <span>Udaipur, Rajasthan, India</span>
             <span className="footer-sep">&middot;</span>
             <a href="#about" className="footer-top-link">Back to top &uarr;</a>
           </div>
