@@ -19,14 +19,17 @@
   padding: 0;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   min-height: 100vh;
   line-height: 1.6;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -564,10 +567,37 @@ a:hover {
   box-shadow: 0 0 22px rgba(240, 84, 84, 0.6);
 }
 
-/* Section Common */
+/* Section Common — Fullscreen Single-Section View (1 section per screen) */
 .section {
-  margin-bottom: 4.25rem;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 3.5rem 0;
+  margin-bottom: 0;
   scroll-margin-top: 1.5rem;
+  scroll-snap-align: start;
+}
+
+#about.section {
+  min-height: calc(100vh - 3.5rem);
+  min-height: calc(100dvh - 3.5rem);
+  justify-content: center;
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+#contact.section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 4rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 .section-title {
@@ -2380,7 +2410,16 @@ a:hover {
   }
 
   .section {
-    margin-bottom: 3.25rem;
+    min-height: auto;
+    padding: 2.25rem 0;
+    margin-bottom: 2rem;
+    scroll-snap-align: start;
+  }
+
+  #about.section,
+  #contact.section {
+    min-height: auto;
+    padding: 2rem 0;
   }
 
   .section-title {
