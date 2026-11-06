@@ -166,53 +166,128 @@ export default function GallerySection() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const topSetRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollStart = useRef(0);
   const hasMoved = useRef(false);
+  const isHovered = useRef(false);
+  const isManualScrolling = useRef(false);
+  const manualTimeout = useRef<NodeJS.Timeout | null>(null);
+  const setWidthRef = useRef(1830);
 
-  // Specifically arrange all 9 milestones into 2 visually balanced, staggered rows:
+  // Specifically arrange all 9 milestones into 2 visually balanced, staggered rows
+  // Top: 300 + 430 + 450 + 320 + 250 = 1750px (+ 4 gaps = 1814px)
   const topRow: GalleryItem[] = [
-    galleryItems[0], // SIH winner (narrow)
-    galleryItems[1], // SIH team (wide)
-    galleryItems[3], // NeRF paper (medium)
-    galleryItems[6], // Ideathon cert (medium)
-    galleryItems[8], // Singing trophy (narrow)
-  ];
-  const bottomRow: GalleryItem[] = [
-    galleryItems[2], // SIH certificate (wide)
-    galleryItems[4], // LoRa paper (medium)
-    galleryItems[5], // Stanford ML (wide)
-    galleryItems[7], // Ideathon stage (wide)
+    { ...galleryItems[0], preferredWidth: 300 }, // SIH winner
+    { ...galleryItems[1], preferredWidth: 430 }, // SIH team
+    { ...galleryItems[3], preferredWidth: 450 }, // NeRF paper
+    { ...galleryItems[6], preferredWidth: 320 }, // Ideathon cert
+    { ...galleryItems[8], preferredWidth: 250 }, // Singing trophy
   ];
 
-  // Scroll by offset button handler
-  const scrollByAmount = (offset: number) => {
-    if (!scrollerRef.current) return;
-    scrollerRef.current.scrollBy({ left: offset, behavior: "smooth" });
+  // Bottom: 440 + 466 + 420 + 440 = 1766px (+ 3 gaps = 1814px)
+  // Both rows match exactly to the single pixel (1814px + 16px gap = 1830px per set)
+  const bottomRow: GalleryItem[] = [
+    { ...galleryItems[2], preferredWidth: 440 }, // SIH certificate
+    { ...galleryItems[4], preferredWidth: 466 }, // LoRa paper
+    { ...galleryItems[5], preferredWidth: 420 }, // Stanford ML
+    { ...galleryItems[7], preferredWidth: 440 }, // Ideathon stage
+  ];
+
+  // Seamless boundary wrap check
+  const checkWrap = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const setWidth = setWidthRef.current;
+    if (setWidth <= 100) return;
+
+    if (el.scrollLeft >= setWidth * 2) {
+      el.scrollLeft -= setWidth;
+    } else if (el.scrollLeft <= 5) {
+      el.scrollLeft += setWidth;
+    }
   };
 
-  // Track scroll progress
+  // Track scroll progress within loop cycle
   const updateScrollProgress = () => {
     const el = scrollerRef.current;
     if (!el) return;
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    if (maxScroll <= 0) {
-      setScrollProgress(0);
-    } else {
-      setScrollProgress(Math.min(100, Math.max(0, (el.scrollLeft / maxScroll) * 100)));
-    }
+    const setWidth = setWidthRef.current;
+    if (setWidth <= 0) return;
+    const currentOffset = el.scrollLeft % setWidth;
+    const progress = Math.min(100, Math.max(0, (currentOffset / setWidth) * 100));
+    setScrollProgress(progress);
   };
+
+  // Scroll by offset button handler (e.g. arrow buttons)
+  const scrollByAmount = (offset: number) => {
+    if (!scrollerRef.current) return;
+    isManualScrolling.current = true;
+    if (manualTimeout.current) clearTimeout(manualTimeout.current);
+    manualTimeout.current = setTimeout(() => {
+      isManualScrolling.current = false;
+    }, 2200);
+
+    scrollerRef.current.scrollBy({ left: offset, behavior: "smooth" });
+  };
+
+  // Continuous infinite auto-glide
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      if (topSetRef.current) {
+        const measured = topSetRef.current.offsetWidth + 16;
+        if (measured > 200) {
+          setWidthRef.current = measured;
+        }
+      }
+    };
+
+    measure();
+    // Start centered in the middle set
+    el.scrollLeft = setWidthRef.current;
+
+    let rafId: number;
+    const speed = 0.65; // gentle, elegant, readable speed
+
+    const step = () => {
+      if (el && !isHovered.current && !isDragging.current && !isManualScrolling.current) {
+        el.scrollLeft += speed;
+        checkWrap();
+        updateScrollProgress();
+      }
+      rafId = requestAnimationFrame(step);
+    };
+
+    rafId = requestAnimationFrame(step);
+    window.addEventListener("resize", measure);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
 
   // Convert vertical mousewheel inside gallery to smooth horizontal scroll
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
     const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) || Math.abs(e.deltaX) > 0) {
         e.preventDefault();
-        el.scrollLeft += e.deltaY;
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        el.scrollLeft += delta;
+        checkWrap();
         updateScrollProgress();
+
+        isManualScrolling.current = true;
+        if (manualTimeout.current) clearTimeout(manualTimeout.current);
+        manualTimeout.current = setTimeout(() => {
+          isManualScrolling.current = false;
+        }, 1800);
       }
     };
     el.addEventListener("wheel", onWheel, { passive: false });
@@ -259,10 +334,20 @@ export default function GallerySection() {
       hasMoved.current = true;
     }
     scrollerRef.current.scrollLeft = scrollStart.current - walk;
+    checkWrap();
     updateScrollProgress();
   };
 
   const onMouseUp = () => {
+    isDragging.current = false;
+  };
+
+  const onMouseEnter = () => {
+    isHovered.current = true;
+  };
+
+  const onMouseLeave = () => {
+    isHovered.current = false;
     isDragging.current = false;
   };
 
@@ -293,7 +378,7 @@ export default function GallerySection() {
 
   return (
     <section id="gallery" className="section gallery-section">
-      {/* Header with — GALLERY and Navigation Arrows */}
+      {/* Header with — GALLERY, Loop Indicator and Navigation Arrows */}
       <div className="gallery-header-row">
         <div className="gallery-title-group">
           <span className="gallery-dash">—</span>
@@ -301,6 +386,9 @@ export default function GallerySection() {
         </div>
 
         <div className="gallery-header-actions">
+          <span className="gallery-loop-pill" title="Continuous smooth loop with pause on hover">
+            <span className="gallery-loop-dot" /> INFINITE GLIDE
+          </span>
           <button
             type="button"
             className="gallery-arrow-btn"
@@ -329,90 +417,109 @@ export default function GallerySection() {
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
-        onScroll={updateScrollProgress}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onScroll={() => {
+          checkWrap();
+          updateScrollProgress();
+        }}
       >
         <div className="gallery-horizontal-track">
-          {/* Top Row */}
+          {/* Top Row — 3 Seamless Repeated Sets */}
           <div className="gallery-row gallery-row-top">
-            {topRow.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className="gallery-h-card"
-                style={{ width: `${item.preferredWidth}px` }}
-                onClick={() => handleCardClick(item)}
-                aria-label={`View ${item.title}`}
+            {[0, 1, 2].map((setIdx) => (
+              <div
+                key={`top-set-${setIdx}`}
+                className="gallery-row-set"
+                ref={setIdx === 0 ? topSetRef : undefined}
+                aria-hidden={setIdx > 0}
               >
-                <div className="gallery-h-img-box" style={{ position: "relative" }}>
-                  <Image
-                    src={getAssetPath(item.src)}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 90vw, 450px"
-                    className="gallery-h-img"
-                    draggable={false}
-                  />
-                  <div className="gallery-h-gradient" />
-                  <div className="gallery-h-info">
-                    <span
-                      className="gallery-h-badge"
-                      style={{ color: categoryColors[item.category] }}
-                    >
-                      {item.subtitle}
-                    </span>
-                    <p className="gallery-h-title">{item.shortTitle}</p>
-                  </div>
-                </div>
-              </button>
+                {topRow.map((item, idx) => (
+                  <button
+                    key={`top-${setIdx}-${item.id}-${idx}`}
+                    type="button"
+                    className="gallery-h-card"
+                    style={{ width: `${item.preferredWidth}px` }}
+                    onClick={() => handleCardClick(item)}
+                    aria-label={`View ${item.title}`}
+                  >
+                    <div className="gallery-h-img-box" style={{ position: "relative" }}>
+                      <Image
+                        src={getAssetPath(item.src)}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 640px) 90vw, 450px"
+                        className="gallery-h-img"
+                        draggable={false}
+                      />
+                      <div className="gallery-h-gradient" />
+                      <div className="gallery-h-info">
+                        <span
+                          className="gallery-h-badge"
+                          style={{ color: categoryColors[item.category] }}
+                        >
+                          {item.subtitle}
+                        </span>
+                        <p className="gallery-h-title">{item.shortTitle}</p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
             ))}
           </div>
 
-          {/* Bottom Row */}
-          {bottomRow.length > 0 && (
-            <div className="gallery-row gallery-row-bottom">
-              {bottomRow.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className="gallery-h-card"
-                  style={{ width: `${item.preferredWidth}px` }}
-                  onClick={() => handleCardClick(item)}
-                  aria-label={`View ${item.title}`}
-                >
-                  <div className="gallery-h-img-box" style={{ position: "relative" }}>
-                    <Image
-                      src={getAssetPath(item.src)}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 640px) 90vw, 450px"
-                      className="gallery-h-img"
-                      draggable={false}
-                    />
-                    <div className="gallery-h-gradient" />
-                    <div className="gallery-h-info">
-                      <span
-                        className="gallery-h-badge"
-                        style={{ color: categoryColors[item.category] }}
-                      >
-                        {item.subtitle}
-                      </span>
-                      <p className="gallery-h-title">{item.shortTitle}</p>
+          {/* Bottom Row — 3 Seamless Repeated Sets */}
+          <div className="gallery-row gallery-row-bottom">
+            {[0, 1, 2].map((setIdx) => (
+              <div
+                key={`bottom-set-${setIdx}`}
+                className="gallery-row-set"
+                aria-hidden={setIdx > 0}
+              >
+                {bottomRow.map((item, idx) => (
+                  <button
+                    key={`bottom-${setIdx}-${item.id}-${idx}`}
+                    type="button"
+                    className="gallery-h-card"
+                    style={{ width: `${item.preferredWidth}px` }}
+                    onClick={() => handleCardClick(item)}
+                    aria-label={`View ${item.title}`}
+                  >
+                    <div className="gallery-h-img-box" style={{ position: "relative" }}>
+                      <Image
+                        src={getAssetPath(item.src)}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 640px) 90vw, 450px"
+                        className="gallery-h-img"
+                        draggable={false}
+                      />
+                      <div className="gallery-h-gradient" />
+                      <div className="gallery-h-info">
+                        <span
+                          className="gallery-h-badge"
+                          style={{ color: categoryColors[item.category] }}
+                        >
+                          {item.subtitle}
+                        </span>
+                        <p className="gallery-h-title">{item.shortTitle}</p>
+                      </div>
                     </div>
-                  </div>
-                </button>
-              ))}
-            </div>
-          )}
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Loop Progress Indicator */}
       <div className="gallery-footer-row">
         <div className="gallery-progress-bar">
           <div
             className="gallery-progress-fill"
-            style={{ width: `${Math.max(12, scrollProgress)}%` }}
+            style={{ width: `${Math.max(8, scrollProgress)}%` }}
           />
         </div>
       </div>

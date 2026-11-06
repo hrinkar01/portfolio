@@ -2218,7 +2218,7 @@ a:hover {
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) transparent;
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   padding: 0.25rem 0.25rem 0.75rem 0.25rem;
   margin: 0 -0.25rem;
 }
@@ -2246,6 +2246,31 @@ a:hover {
   background: var(--accent);
 }
 
+.gallery-loop-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-jetbrains-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  background: rgba(48, 71, 94, 0.25);
+  border: 1px solid rgba(48, 71, 94, 0.45);
+  padding: 0.22rem 0.65rem;
+  border-radius: 9999px;
+  user-select: none;
+}
+
+.gallery-loop-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
 /* Two-Row Horizontal Track */
 .gallery-horizontal-track {
   display: flex;
@@ -2258,6 +2283,12 @@ a:hover {
   display: flex;
   gap: 1rem;
   width: max-content;
+}
+
+.gallery-row-set {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
 }
 
 /* Photo Card (Matching Reference Style: image fills card, text at bottom with soft vignette) */
