@@ -167,11 +167,11 @@ export default function GallerySection() {
 
   const scrollerRef = useRef<HTMLDivElement>(null);
   const topSetRef = useRef<HTMLDivElement>(null);
+  const scrollPosRef = useRef(1830);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollStart = useRef(0);
   const hasMoved = useRef(false);
-  const isHovered = useRef(false);
   const isManualScrolling = useRef(false);
   const manualTimeout = useRef<NodeJS.Timeout | null>(null);
   const setWidthRef = useRef(1830);
@@ -202,10 +202,12 @@ export default function GallerySection() {
     const setWidth = setWidthRef.current;
     if (setWidth <= 100) return;
 
-    if (el.scrollLeft >= setWidth * 2) {
-      el.scrollLeft -= setWidth;
-    } else if (el.scrollLeft <= 5) {
-      el.scrollLeft += setWidth;
+    if (scrollPosRef.current >= setWidth * 2) {
+      scrollPosRef.current -= setWidth;
+      el.scrollLeft = scrollPosRef.current;
+    } else if (scrollPosRef.current <= 5) {
+      scrollPosRef.current += setWidth;
+      el.scrollLeft = scrollPosRef.current;
     }
   };
 
@@ -222,17 +224,21 @@ export default function GallerySection() {
 
   // Scroll by offset button handler (e.g. arrow buttons)
   const scrollByAmount = (offset: number) => {
-    if (!scrollerRef.current) return;
+    const el = scrollerRef.current;
+    if (!el) return;
     isManualScrolling.current = true;
+    scrollPosRef.current += offset;
+    checkWrap();
+
     if (manualTimeout.current) clearTimeout(manualTimeout.current);
     manualTimeout.current = setTimeout(() => {
       isManualScrolling.current = false;
-    }, 2200);
+    }, 1500);
 
-    scrollerRef.current.scrollBy({ left: offset, behavior: "smooth" });
+    el.scrollBy({ left: offset, behavior: "smooth" });
   };
 
-  // Continuous infinite auto-glide
+  // Continuous infinite automatic glide
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -248,15 +254,25 @@ export default function GallerySection() {
 
     measure();
     // Start centered in the middle set
-    el.scrollLeft = setWidthRef.current;
+    scrollPosRef.current = setWidthRef.current;
+    el.scrollLeft = scrollPosRef.current;
 
     let rafId: number;
-    const speed = 0.65; // gentle, elegant, readable speed
+    const speed = 1.0; // Fluid, constant, visible automatic glide
 
     const step = () => {
-      if (el && !isHovered.current && !isDragging.current && !isManualScrolling.current) {
-        el.scrollLeft += speed;
-        checkWrap();
+      const node = scrollerRef.current;
+      if (node && !isDragging.current && !isManualScrolling.current) {
+        scrollPosRef.current += speed;
+        const setWidth = setWidthRef.current;
+        if (setWidth > 100) {
+          if (scrollPosRef.current >= setWidth * 2) {
+            scrollPosRef.current -= setWidth;
+          } else if (scrollPosRef.current <= 5) {
+            scrollPosRef.current += setWidth;
+          }
+        }
+        node.scrollLeft = scrollPosRef.current;
         updateScrollProgress();
       }
       rafId = requestAnimationFrame(step);
@@ -279,15 +295,16 @@ export default function GallerySection() {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX) || Math.abs(e.deltaX) > 0) {
         e.preventDefault();
         const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-        el.scrollLeft += delta;
+        scrollPosRef.current += delta;
         checkWrap();
+        el.scrollLeft = scrollPosRef.current;
         updateScrollProgress();
 
         isManualScrolling.current = true;
         if (manualTimeout.current) clearTimeout(manualTimeout.current);
         manualTimeout.current = setTimeout(() => {
           isManualScrolling.current = false;
-        }, 1800);
+        }, 1200);
       }
     };
     el.addEventListener("wheel", onWheel, { passive: false });
@@ -333,21 +350,13 @@ export default function GallerySection() {
     if (Math.abs(x - startX.current) > 6) {
       hasMoved.current = true;
     }
-    scrollerRef.current.scrollLeft = scrollStart.current - walk;
+    scrollPosRef.current = scrollStart.current - walk;
     checkWrap();
+    scrollerRef.current.scrollLeft = scrollPosRef.current;
     updateScrollProgress();
   };
 
   const onMouseUp = () => {
-    isDragging.current = false;
-  };
-
-  const onMouseEnter = () => {
-    isHovered.current = true;
-  };
-
-  const onMouseLeave = () => {
-    isHovered.current = false;
     isDragging.current = false;
   };
 
@@ -386,7 +395,7 @@ export default function GallerySection() {
         </div>
 
         <div className="gallery-header-actions">
-          <span className="gallery-loop-pill" title="Continuous smooth loop with pause on hover">
+          <span className="gallery-loop-pill" title="Automatic continuous stream">
             <span className="gallery-loop-dot" /> INFINITE GLIDE
           </span>
           <button
@@ -417,8 +426,7 @@ export default function GallerySection() {
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        onMouseLeave={onMouseUp}
         onScroll={() => {
           checkWrap();
           updateScrollProgress();
