@@ -24,10 +24,20 @@ interface Particle {
 export default function HeroAnimated() {
   const [displayedText, setDisplayedText] = useState(ROLES[0]);
   const [isScrambling, setIsScrambling] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef<{ x: number | null; y: number | null }>({ x: null, y: null });
+
+  // Parallax scroll tracking
+  useEffect(() => {
+    const onScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Refs for timing control without stale closures
   const roleIndexRef = useRef(0);
@@ -223,6 +233,10 @@ export default function HeroAnimated() {
       ref={heroRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `translateY(${Math.min(scrollY * 0.28, 120)}px)`,
+        opacity: Math.max(1 - scrollY / 650, 0.15),
+      }}
     >
       {/* Background canvas for connected particle constellation */}
       <canvas ref={canvasRef} className="hero-particle-canvas" />

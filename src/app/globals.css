@@ -47,22 +47,88 @@ a:hover {
   text-shadow: 0 0 10px var(--glow);
 }
 
+/* Outer Full-Page Layout Wrapper */
+.portfolio-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+/* Sticky Fullscreen Hero Landing Area (Pinned underneath, content rolls over it) */
+.hero-fullscreen {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+  background-color: var(--bg-color);
+  overflow: hidden;
+}
+
+.hero-fullscreen-inner {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Content Sheet — Glides smoothly over the Hero on scroll */
+.content-sheet {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  background-color: var(--bg-color);
+  border-top: 1px solid rgba(48, 71, 94, 0.75);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  box-shadow: 
+    0 -25px 60px rgba(0, 0, 0, 0.85),
+    0 -6px 25px rgba(240, 84, 84, 0.12);
+  padding-top: 2.25rem;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.content-sheet-inner {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem 1.75rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.content-sheet-handle {
+  width: 50px;
+  height: 4px;
+  background: rgba(221, 221, 221, 0.22);
+  border-radius: 9999px;
+  margin: -0.75rem auto 2.5rem auto;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content-sheet:hover .content-sheet-handle {
+  background: var(--accent);
+  width: 68px;
+  box-shadow: 0 0 12px var(--glow);
+}
+
 .container {
   max-width: 1040px;
   width: 100%;
   margin: 0 auto;
   padding: 2rem 1.5rem 1.75rem 1.5rem;
-}
-
-/* Fullscreen Hero Landing Area (Hero-only on main screen) */
-.hero-fullscreen {
-  min-height: calc(100vh - 2rem);
-  min-height: calc(100dvh - 2rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-  margin-bottom: 4rem;
 }
 
 /* Header */
@@ -2249,14 +2315,22 @@ a:hover {
 }
 
 @media (max-width: 640px) {
-  .container {
-    padding: 1.5rem 1.15rem 1.5rem 1.15rem;
+  .hero-fullscreen-inner {
+    padding: 1.15rem 1.15rem 0.75rem 1.15rem;
   }
 
-  .hero-fullscreen {
-    min-height: calc(100vh - 1.5rem);
-    min-height: calc(100dvh - 1.5rem);
-    margin-bottom: 2.5rem;
+  .content-sheet {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-top: 1.75rem;
+  }
+
+  .content-sheet-inner {
+    padding: 0 1.15rem 1.5rem 1.15rem;
+  }
+
+  .container {
+    padding: 1.5rem 1.15rem 1.5rem 1.15rem;
   }
 
   .nav-header {
