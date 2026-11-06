@@ -218,7 +218,7 @@ export default function SkillsInteractive() {
           <input
             type="text"
             className="bento-search-input"
-            placeholder="Filter skills (e.g. Python, LoRa, Docker, ESP32)..."
+            placeholder="Search skills (e.g. Python, ESP32)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

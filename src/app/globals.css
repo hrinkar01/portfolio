@@ -75,7 +75,7 @@ a:hover {
 }
 
 .hero-fullscreen-inner {
-  max-width: 1040px;
+  max-width: 1180px;
   width: 100%;
   margin: 0 auto;
   padding: 1.5rem 1.5rem 1rem 1.5rem;
@@ -105,7 +105,7 @@ a:hover {
 }
 
 .content-sheet-inner {
-  max-width: 1040px;
+  max-width: 1180px;
   width: 100%;
   margin: 0 auto;
   padding: 0 1.5rem 1.75rem 1.5rem;
@@ -128,7 +128,7 @@ a:hover {
 }
 
 .container {
-  max-width: 1040px;
+  max-width: 1180px;
   width: 100%;
   margin: 0 auto;
   padding: 2rem 1.5rem 1.75rem 1.5rem;
@@ -600,7 +600,7 @@ a:hover {
 }
 
 #skills .section-title {
-  margin-bottom: 0.65rem;
+  margin-bottom: 1rem;
 }
 
 #contact.section {
@@ -1469,14 +1469,14 @@ a:hover {
 .bento-skills-container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 /* Controls Bar (Filter Pills + Search) */
 .bento-skills-header {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 @media (min-width: 860px) {
@@ -1490,7 +1490,7 @@ a:hover {
 .bento-tab-strip {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
   flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
@@ -1499,13 +1499,13 @@ a:hover {
 .bento-tab-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.28rem 0.65rem;
+  gap: 0.35rem;
+  padding: 0.38rem 0.75rem;
   border-radius: 9999px;
   background: rgba(48, 71, 94, 0.25);
   border: 1px solid rgba(48, 71, 94, 0.5);
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1529,8 +1529,8 @@ a:hover {
 
 .tab-count-bubble {
   font-family: var(--font-jetbrains-mono, monospace);
-  font-size: 0.68rem;
-  padding: 0.1rem 0.4rem;
+  font-size: 0.72rem;
+  padding: 0.12rem 0.42rem;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.25);
   color: var(--text-dim);
@@ -1546,25 +1546,25 @@ a:hover {
   position: relative;
   display: flex;
   align-items: center;
-  min-width: 260px;
+  min-width: 220px;
 }
 
 .bento-search-icon {
   position: absolute;
   left: 0.85rem;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   pointer-events: none;
   opacity: 0.65;
 }
 
 .bento-search-input {
   width: 100%;
-  padding: 0.44rem 2rem 0.44rem 2.15rem;
+  padding: 0.46rem 1.8rem 0.46rem 2.1rem;
   border-radius: 9999px;
   background: rgba(34, 40, 49, 0.8);
   border: 1px solid rgba(48, 71, 94, 0.6);
   color: var(--text-primary);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   outline: none;
   transition: all 0.2s ease;
 }
@@ -1596,15 +1596,15 @@ a:hover {
 
 /* Real-World Application Context Banner */
 .bento-proof-strip {
-  min-height: 1.55rem;
-  padding: 0.15rem 0.75rem;
+  min-height: 1.7rem;
+  padding: 0.22rem 0.8rem;
   border-radius: 6px;
   background: rgba(48, 71, 94, 0.15);
   border: 1px dashed rgba(240, 84, 84, 0.25);
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 0.72rem;
+  gap: 0.5rem;
+  font-size: 0.76rem;
   color: var(--text-dim);
   opacity: 0.55;
   transition: all 0.2s ease;
@@ -1623,7 +1623,7 @@ a:hover {
 
 .bento-proof-badge {
   font-family: var(--font-jetbrains-mono, monospace);
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   letter-spacing: 0.12em;
   font-weight: 700;
   color: var(--accent);
@@ -1651,7 +1651,7 @@ a:hover {
 .bento-skills-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 0.55rem;
+  gap: 0.85rem;
 }
 
 /* Bento Cards: Responsive Grid Spans */
@@ -1660,12 +1660,12 @@ a:hover {
   background: rgba(34, 40, 49, 0.65);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(48, 71, 94, 0.45);
-  border-radius: 10px;
-  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  padding: 0.95rem 1.15rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.45rem;
+  gap: 0.65rem;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
@@ -1723,17 +1723,17 @@ a:hover {
 }
 
 .bento-card-icon {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   line-height: 1;
   flex-shrink: 0;
 }
 
 .bento-card-title {
-  font-size: 0.84rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .bento-card-summary {
@@ -1742,9 +1742,9 @@ a:hover {
 
 .bento-card-tag {
   font-family: var(--font-jetbrains-mono, monospace);
-  font-size: 0.6rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  padding: 0.12rem 0.42rem;
+  padding: 0.16rem 0.52rem;
   border-radius: 999px;
   background: rgba(240, 84, 84, 0.08);
   border: 1px solid rgba(240, 84, 84, 0.25);
@@ -1757,7 +1757,7 @@ a:hover {
 .bento-chips-wrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  gap: 0.42rem;
   align-items: center;
 }
 
@@ -1765,12 +1765,12 @@ a:hover {
 .bento-skill-chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.24rem 0.52rem;
-  border-radius: 5px;
+  padding: 0.32rem 0.62rem;
+  border-radius: 6px;
   background: rgba(48, 71, 94, 0.25);
   border: 1px solid rgba(48, 71, 94, 0.5);
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
