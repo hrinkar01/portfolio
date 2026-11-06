@@ -2424,6 +2424,22 @@ a:hover {
 }
 
 @media (min-width: 769px) and (pointer: fine) {
+  *,
+  *::before,
+  *::after,
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  .gallery-arrow-btn,
+  .gallery-h-card {
+    cursor: none !important;
+  }
+
   .custom-cursor-wrap {
     display: block;
     position: fixed;
