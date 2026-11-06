@@ -2,6 +2,7 @@ import GallerySection from "./components/GallerySection";
 import HeroAnimated from "./components/HeroAnimated";
 import SkillsInteractive from "./components/SkillsInteractive";
 import PullRequestsList from "./components/PullRequestsList";
+import ContactSection from "./components/ContactSection";
 
 export default function Home() {
   return (
@@ -322,47 +323,8 @@ export default function Home() {
       {/* Gallery Section */}
       <GallerySection />
 
-      {/* Contact Section */}
-      <section id="contact" className="section">
-        <h2 className="section-title">06. Contact</h2>
-        <div className="contact-list">
-          <div className="contact-item">
-            <span className="contact-label">Email:</span>
-            <a href="mailto:hrinkar16@gmail.com">hrinkar16@gmail.com</a>
-          </div>
-          <div className="contact-item">
-            <span className="contact-label">Phone:</span>
-            <a href="tel:+916376123778">+91 6376123778</a>
-          </div>
-          <div className="contact-item">
-            <span className="contact-label">Location:</span>
-            <span style={{ color: "var(--text-muted)" }}>Sector 4, Udaipur (Rajasthan), India</span>
-          </div>
-          <div className="contact-item">
-            <span className="contact-label">GitHub:</span>
-            <a href="https://github.com/hrinkar01" target="_blank" rel="noopener noreferrer">github.com/hrinkar01</a>
-          </div>
-          <div className="contact-item">
-            <span className="contact-label">LinkedIn:</span>
-            <a href="https://linkedin.com/in/hrinkar-bothra-360093308/" target="_blank" rel="noopener noreferrer">linkedin.com/in/hrinkar-bothra-360093308</a>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <p className="footer-tagline">
-            Designed &amp; Engineered by <strong>Hrinkar Bothra</strong> &middot; Built with Next.js &amp; TypeScript
-          </p>
-          <div className="footer-meta-row">
-            <span>&copy; 2026 Hrinkar Bothra</span>
-            <span className="footer-sep">&middot;</span>
-            <a href="#about" className="footer-top-link">Back to top &uarr;</a>
-          </div>
-        </div>
-      </footer>
+      {/* Contact Section & Integrated Footer */}
+      <ContactSection />
         </div>
       </main>
     </div>
