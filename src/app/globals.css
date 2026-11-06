@@ -2416,4 +2416,77 @@ a:hover {
   }
 }
 
+/* ========================================================
+   Custom Smooth Spring Cursor (from Downloads/portfolio)
+   ======================================================== */
+.custom-cursor-wrap {
+  display: none;
+}
+
+@media (min-width: 769px) and (pointer: fine) {
+  .custom-cursor-wrap {
+    display: block;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .custom-cursor-wrap.visible {
+    opacity: 1;
+  }
+
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 9999px;
+    pointer-events: none;
+    will-change: transform;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(240, 84, 84, 0.7);
+    background-color: rgba(240, 84, 84, 0.05);
+    box-shadow: 0 0 12px rgba(240, 84, 84, 0.3);
+    transition: width 0.2s ease-out, height 0.2s ease-out, border-color 0.2s ease-out, background-color 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+
+  .custom-cursor-ring.hovering {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #F05454;
+    background-color: rgba(240, 84, 84, 0.15);
+    box-shadow: 0 0 20px rgba(240, 84, 84, 0.5);
+  }
+
+  .custom-cursor-ring.clicking {
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgba(240, 84, 84, 0.9);
+    background-color: rgba(240, 84, 84, 0.2);
+    box-shadow: 0 0 14px rgba(240, 84, 84, 0.4);
+  }
+
+  .custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 9999px;
+    pointer-events: none;
+    will-change: transform;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #F05454, #ff8c42);
+    box-shadow: 0 0 10px #F05454;
+    transition: width 0.15s ease, height 0.15s ease;
+  }
+
+  .custom-cursor-dot.clicking {
+    width: 6px;
+    height: 6px;
+  }
+}
+
 
