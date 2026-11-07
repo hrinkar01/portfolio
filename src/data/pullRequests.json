@@ -7,7 +7,7 @@
     "subsystem": "blt-dash",
     "title": "blt-dash: add ASSETS binding and redirect /dash and /dash/ to root",
     "url": "https://git.owaspblt.org/BLT/pull/66",
-    "status": "under_review",
+    "status": "approved",
     "date": "Nov 3, 2026",
     "forge": "ForkMesh"
   },
@@ -19,7 +19,7 @@
     "subsystem": "blt-legacy",
     "title": "blt-legacy: drop unused cffi pin and upgrade cryptography, aiohttp and pillow",
     "url": "https://git.owaspblt.org/BLT/pull/47",
-    "status": "approved",
+    "status": "merged",
     "date": "Nov 1, 2026",
     "forge": "ForkMesh"
   },
