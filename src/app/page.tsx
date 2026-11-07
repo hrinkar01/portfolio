@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="portfolio-wrapper">
       {/* Fullscreen Hero Landing Area (Sticky pinned underneath while content slides over it) */}
-      <section className="hero-fullscreen">
+      <section id="hero" className="hero-fullscreen">
         <div className="hero-fullscreen-inner">
           {/* Header */}
           <header className="nav-header">
@@ -46,7 +46,7 @@ export default function Home() {
 
           {/* Scroll Cue to hint scrolling below */}
           <div className="hero-scroll-cue">
-            <a href="#about" aria-label="Scroll to About Me">
+            <a href="#skills" aria-label="Scroll to Skills">
               <span className="scroll-cue-text">EXPLORE WORK</span>
               <span className="scroll-cue-arrow">↓</span>
             </a>
@@ -59,56 +59,15 @@ export default function Home() {
         <div className="content-sheet-inner">
           <div className="content-sheet-handle" aria-hidden="true" />
 
-          {/* About Section */}
-      <section id="about" className="section">
-        <h2 className="section-title">01. About Me</h2>
-        <div className="about-body">
-          <p className="about-lead">
-            I build to <span className="about-highlight">solve real problems</span> — whether it&apos;s embedded hardware, IoT systems, or full-stack software. I believe great engineering is invisible; it just works.
-          </p>
-          <p className="about-secondary">
-            Currently, I&apos;m an active open-source contributor to the{" "}
-            <a href="https://owasp.org/www-project-bug-logging-tool/" target="_blank" rel="noopener noreferrer">
-              OWASP Bug Logging Tool (BLT)
-            </a>
-            {" "}project — building security-focused tooling used by researchers and developers worldwide.
-          </p>
-          <div className="achievements">
-            <div className="achievement-card">
-              <span className="achievement-badge">🏆</span>
-              <div>
-                <p className="achievement-title">Smart India Hackathon 2025 — Grand Finale Winner</p>
-                <p className="achievement-desc">National-level hackathon by Govt. of India (Hardware Edition). 1st place with Team DEEP SIGHT, awarded ₹1,50,000 top prize.</p>
-              </div>
-            </div>
+          {/* Skills Section */}
+          <section id="skills" className="section">
+            <h2 className="section-title">01. Skills &amp; Technologies</h2>
+            <SkillsInteractive />
+          </section>
 
-            <div className="achievement-card">
-              <span className="achievement-badge">🥇</span>
-              <div>
-                <p className="achievement-title">National IDEATHON &apos;24 — 1st Position &amp; Gold Medal</p>
-                <p className="achievement-desc">Secured 1st place and gold medal leading Team Innovate X at the National-Level IDEATHON &apos;24 competition.</p>
-              </div>
-            </div>
-            <div className="achievement-card">
-              <span className="achievement-badge">🌍</span>
-              <div>
-                <p className="achievement-title">OWASP Open Source Contributor</p>
-                <p className="achievement-desc">Actively contributing to the OWASP Bug Logging Tool (BLT) — building security-focused open-source software used globally.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="section">
-        <h2 className="section-title">02. Skills &amp; Technologies</h2>
-        <SkillsInteractive />
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="section">
-        <h2 className="section-title">03. Featured Projects</h2>
+          {/* Projects Section */}
+          <section id="projects" className="section">
+            <h2 className="section-title">02. Featured Projects</h2>
 
         <div className="projects-bento">
           {/* Flagship Hero Card: ResQ — SIH '25 National Winner */}
@@ -283,7 +242,7 @@ export default function Home() {
 
       {/* Open Source Contributions Section */}
       <section id="opensource" className="section">
-        <h2 className="section-title">04. Open Source Contributions</h2>
+        <h2 className="section-title">03. Open Source Contributions</h2>
         <div className="oss-card">
           <div className="oss-header">
             <div className="oss-org-badge">

@@ -391,7 +391,7 @@ export default function GallerySection() {
       <div className="gallery-header-row">
         <div className="gallery-title-group">
           <span className="gallery-dash">—</span>
-          <h2 className="section-title gallery-title">05. GALLERY</h2>
+          <h2 className="section-title gallery-title">04. GALLERY</h2>
         </div>
 
         <div className="gallery-header-actions">

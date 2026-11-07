@@ -294,9 +294,6 @@ export default function HeroAnimated() {
 
       {/* Interactive Pill Buttons */}
       <div className="hero-actions">
-        <a href="#about" className="pill-btn animated-pill">
-          <span>ABOUT</span>
-        </a>
         <a href="#skills" className="pill-btn animated-pill">
           <span>SKILLS</span>
         </a>

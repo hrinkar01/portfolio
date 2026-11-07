@@ -593,15 +593,6 @@ a:hover {
   scroll-snap-stop: always;
 }
 
-#about.section {
-  min-height: calc(100vh - 6rem);
-  min-height: calc(100dvh - 6rem);
-  justify-content: center;
-  padding-top: 0.5rem;
-  padding-bottom: 1.5rem;
-  margin-bottom: 16vh;
-}
-
 #skills.section {
   min-height: calc(100vh - 4rem);
   min-height: calc(100dvh - 4rem);
@@ -659,91 +650,6 @@ a:hover {
   color: var(--text-muted);
   font-size: 1.05rem;
   line-height: 1.8;
-}
-
-/* About Me Enhanced */
-.about-body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.about-lead {
-  font-size: clamp(1.08rem, 2vw, 1.2rem);
-  line-height: 1.75;
-  color: var(--text-primary);
-  font-weight: 400;
-}
-
-.about-highlight {
-  color: var(--accent);
-  font-weight: 700;
-  position: relative;
-}
-
-.about-secondary {
-  font-size: 1.02rem;
-  line-height: 1.75;
-  color: var(--text-muted);
-}
-
-/* Achievement Cards — 2x2 grid on laptop/desktop, 1 col on mobile */
-.achievements {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.85rem;
-  margin-top: 0.35rem;
-}
-
-/* Achievements Grid — 3 symmetric columns on desktop */
-.achievements {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.85rem;
-  margin-top: 0.35rem;
-}
-
-@media (min-width: 768px) {
-  .achievements {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.achievement-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.95rem;
-  padding: 1.1rem 1.25rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: var(--bg-card);
-  transition: all 0.22s ease;
-}
-
-.achievement-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 0 14px var(--glow);
-  transform: translateY(-2px);
-}
-
-.achievement-badge {
-  font-size: 1.45rem;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-}
-
-.achievement-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.25rem;
-  letter-spacing: 0.01em;
-}
-
-.achievement-desc {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  line-height: 1.55;
 }
 
 /* ========================================================
@@ -2744,7 +2650,7 @@ a:hover {
     scroll-snap-align: start;
   }
 
-  #about.section,
+  #skills.section,
   #contact.section {
     min-height: auto;
     padding: 2rem 0;

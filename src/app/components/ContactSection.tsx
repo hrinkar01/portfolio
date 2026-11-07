@@ -15,7 +15,7 @@ export default function ContactSection() {
     <section id="contact" className="section contact-section-enhanced">
       <div className="contact-inner-wrap">
         <div className="contact-header-block">
-          <h2 className="section-title">06. Contact</h2>
+          <h2 className="section-title">05. Contact</h2>
           <h3 className="contact-headline">Let&apos;s build something remarkable together.</h3>
           <p className="contact-subtitle">
             Whether you have an ambitious hardware/IoT system, open-source collaboration, or software engineering role in mind — my inbox is always open.
@@ -127,7 +127,7 @@ export default function ContactSection() {
           <div className="footer-meta-row">
             <span>&copy; 2026 Hrinkar Bothra</span>
             <span className="footer-sep">&middot;</span>
-            <a href="#about" className="footer-top-link">
+            <a href="#hero" className="footer-top-link">
               Back to top &uarr;
             </a>
           </div>
