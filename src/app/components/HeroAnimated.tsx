@@ -6,6 +6,7 @@ const ROLES = [
   "Open Source Contributor",
   "Smart India Hackathon '25 WINNER",
   "Reverse Engineer",
+  "Musician",
   "IOT & EMBEDDED SYSTEM BUILDER",
   "GITS IDEATHON '24 WINNER",
   "Machine Learning Developer",
