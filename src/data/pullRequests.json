@@ -7,7 +7,7 @@
     "subsystem": "blt-dash",
     "title": "blt-dash: add ASSETS binding and redirect /dash and /dash/ to root",
     "url": "https://git.owaspblt.org/BLT/pull/66",
-    "status": "approved",
+    "status": "merged",
     "date": "Nov 3, 2026",
     "forge": "ForkMesh"
   },
