@@ -3,11 +3,12 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 
 const ROLES = [
-  "SOFTWARE ENGINEER",
+  "Open Source Contributor",
   "Smart India Hackathon '25 WINNER",
-  "OWASP BLT CONTRIBUTOR",
+  "Reverse Engineer",
   "IOT & EMBEDDED SYSTEM BUILDER",
   "GITS IDEATHON '24 WINNER",
+  "Machine Learning Developer",
 ];
 
 const SCRAMBLE_GLYPHS = "01#@$%&*!?<>_[]{}/\\=+~^";
