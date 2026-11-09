@@ -1,5 +1,17 @@
 [
   {
+    "id": "blt-100",
+    "number": 100,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-enforcement",
+    "title": "blt-enforcement: label trademark check as demo, apply jurisdiction filter, and add external links",
+    "url": "https://git.owaspblt.org/BLT/pull/100",
+    "status": "under_review",
+    "date": "Nov 10, 2026",
+    "forge": "ForkMesh"
+  },
+  {
     "id": "blt-66",
     "number": 66,
     "repo": "OWASP/BLT",
