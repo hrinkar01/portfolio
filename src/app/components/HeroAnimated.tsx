@@ -287,10 +287,10 @@ export default function HeroAnimated() {
         <a
           href="#opensource"
           className="hero-badge-chip"
-          title="Click to open OWASP Open Source Contribution section"
+          title="Click to open Open Source Contribution section"
         >
-          <span className="badge-chip-icon">🛡️</span>
-          <span className="badge-chip-text">Active OWASP BLT Contributor</span>
+          <span className="badge-chip-icon">🌐</span>
+          <span className="badge-chip-text">Active Open Source Contributor</span>
         </a>
       </div>
 
