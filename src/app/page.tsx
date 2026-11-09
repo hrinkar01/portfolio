@@ -259,14 +259,6 @@ export default function Home() {
               <PullRequestsList />
 
               <div className="oss-footer-actions">
-                <div className="oss-tech-tags">
-                  <span className="tag">Python</span>
-                  <span className="tag">Cloudflare Workers</span>
-                  <span className="tag">Cryptography</span>
-                  <span className="tag">Pytest</span>
-                  <span className="tag">urllib.parse</span>
-                  <span className="tag">Gitea API</span>
-                </div>
                 <div className="oss-links-row">
                   <a href="https://git.owaspblt.org/BLT" target="_blank" rel="noopener noreferrer">
                     OWASP/BLT &rarr;
