@@ -1,5 +1,17 @@
 [
   {
+    "id": "blt-115",
+    "number": 115,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-dash",
+    "title": "blt-dash: respect prefers-reduced-motion, keep title static, and remove pointer cursor",
+    "url": "https://git.owaspblt.org/BLT/pull/115",
+    "status": "under_review",
+    "date": "Nov 11, 2026",
+    "forge": "ForkMesh"
+  },
+  {
     "id": "blt-100",
     "number": 100,
     "repo": "OWASP/BLT",
