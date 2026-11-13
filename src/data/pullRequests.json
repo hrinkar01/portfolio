@@ -1,5 +1,17 @@
 [
   {
+    "id": "blt-119",
+    "number": 119,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-dash",
+    "title": "blt-dash: reach Waypoint gold standard with CI test runner, contributing guide, and docs cleanup",
+    "url": "https://git.owaspblt.org/BLT/pull/119",
+    "status": "under_review",
+    "date": "Nov 13, 2026",
+    "forge": "ForkMesh"
+  },
+  {
     "id": "blt-115",
     "number": 115,
     "repo": "OWASP/BLT",
