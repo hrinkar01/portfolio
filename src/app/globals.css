@@ -1235,23 +1235,25 @@ a:hover {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: #3fb950;
 }
 
-.pr-git-icon.approved,
-.pr-git-icon.merged {
-  color: #10b981;
-}
-
+.pr-git-icon.open,
+.pr-git-icon.under_review,
 .pr-git-icon.review {
-  color: #f59e0b;
+  color: #3fb950;
 }
 
-.pr-git-icon.open {
-  color: #60a5fa;
+.pr-git-icon.approved {
+  color: #3fb950;
+}
+
+.pr-git-icon.merged {
+  color: #a371f7;
 }
 
 .pr-git-icon.closed {
-  color: #94a3b8;
+  color: #8b949e;
 }
 
 .pr-number-tag {
@@ -1326,9 +1328,9 @@ a:hover {
 }
 
 .pr-status-pill.open {
-  background: rgba(59, 130, 246, 0.12);
-  border: 1px solid rgba(59, 130, 246, 0.35);
-  color: #60a5fa;
+  background: rgba(63, 185, 80, 0.12);
+  border: 1px solid rgba(63, 185, 80, 0.35);
+  color: #3fb950;
 }
 
 .pr-status-pill.closed {
