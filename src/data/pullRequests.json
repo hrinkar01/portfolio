@@ -142,5 +142,41 @@
     "status": "merged",
     "date": "Oct 22, 2026",
     "forge": "ForkMesh"
+  },
+  {
+    "id": "owtf-1472",
+    "number": 1472,
+    "repo": "OWASP/owtf",
+    "repoUrl": "https://github.com/owtf/owtf",
+    "subsystem": "core-engine",
+    "title": "Fix startup crash on macOS when spawning worker processes",
+    "url": "https://github.com/owtf/owtf/pull/1472",
+    "status": "open",
+    "date": "Recent",
+    "forge": "GitHub OWASP"
+  },
+  {
+    "id": "owtf-1471",
+    "number": 1471,
+    "repo": "OWASP/owtf",
+    "repoUrl": "https://github.com/owtf/owtf",
+    "subsystem": "security-auth",
+    "title": "fix(settings): ensure user config in local settings.py overrides JWT defaults",
+    "url": "https://github.com/owtf/owtf/pull/1471",
+    "status": "open",
+    "date": "Recent",
+    "forge": "GitHub OWASP"
+  },
+  {
+    "id": "comm-1326",
+    "number": 1326,
+    "repo": "OWASP/www-community",
+    "repoUrl": "https://github.com/OWASP/www-community",
+    "subsystem": "gsoc-docs",
+    "title": "Fixed broken BLT project links in GSoC 2026 ideas page",
+    "url": "https://github.com/OWASP/www-community/pull/1326",
+    "status": "closed",
+    "date": "Closed",
+    "forge": "GitHub OWASP"
   }
 ]
