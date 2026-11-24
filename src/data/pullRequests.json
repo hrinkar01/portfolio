@@ -1,5 +1,53 @@
 [
   {
+    "id": "blt-160",
+    "number": 160,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-api",
+    "title": "blt-api: send verification email and create auth identity on POST /users",
+    "url": "https://git.owaspblt.org/BLT/pull/160",
+    "status": "approved",
+    "date": "Nov 24, 2026",
+    "forge": "ForkMesh"
+  },
+  {
+    "id": "blt-157",
+    "number": 157,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-api",
+    "title": "blt-api: restrict privileged fields on PATCH /bugs/{id} to staff",
+    "url": "https://git.owaspblt.org/BLT/pull/157",
+    "status": "approved",
+    "date": "Nov 24, 2026",
+    "forge": "ForkMesh"
+  },
+  {
+    "id": "blt-141",
+    "number": 141,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-api",
+    "title": "blt-api: add access control to organization integrations and prevent manager email leakage",
+    "url": "https://git.owaspblt.org/BLT/pull/141",
+    "status": "approved",
+    "date": "Nov 19, 2026",
+    "forge": "ForkMesh"
+  },
+  {
+    "id": "blt-122",
+    "number": 122,
+    "repo": "OWASP/BLT",
+    "repoUrl": "https://git.owaspblt.org/BLT",
+    "subsystem": "blt-dash",
+    "title": "blt-dash: attach security headers and CORS to static asset responses",
+    "url": "https://git.owaspblt.org/BLT/pull/122",
+    "status": "approved",
+    "date": "Nov 14, 2026",
+    "forge": "ForkMesh"
+  },
+  {
     "id": "blt-119",
     "number": 119,
     "repo": "OWASP/BLT",
@@ -19,7 +67,7 @@
     "subsystem": "blt-dash",
     "title": "blt-dash: respect prefers-reduced-motion, keep title static, and remove pointer cursor",
     "url": "https://git.owaspblt.org/BLT/pull/115",
-    "status": "under_review",
+    "status": "approved",
     "date": "Nov 11, 2026",
     "forge": "ForkMesh"
   },
@@ -94,41 +142,5 @@
     "status": "merged",
     "date": "Oct 22, 2026",
     "forge": "ForkMesh"
-  },
-  {
-    "id": "owtf-1472",
-    "number": 1472,
-    "repo": "OWASP/owtf",
-    "repoUrl": "https://github.com/owtf/owtf",
-    "subsystem": "core-engine",
-    "title": "Fix startup crash on macOS when spawning worker processes",
-    "url": "https://github.com/owtf/owtf/pull/1472",
-    "status": "open",
-    "date": "Recent",
-    "forge": "GitHub OWASP"
-  },
-  {
-    "id": "owtf-1471",
-    "number": 1471,
-    "repo": "OWASP/owtf",
-    "repoUrl": "https://github.com/owtf/owtf",
-    "subsystem": "security-auth",
-    "title": "fix(settings): ensure user config in local settings.py overrides JWT defaults",
-    "url": "https://github.com/owtf/owtf/pull/1471",
-    "status": "open",
-    "date": "Recent",
-    "forge": "GitHub OWASP"
-  },
-  {
-    "id": "comm-1326",
-    "number": 1326,
-    "repo": "OWASP/www-community",
-    "repoUrl": "https://github.com/OWASP/www-community",
-    "subsystem": "gsoc-docs",
-    "title": "Fixed broken BLT project links in GSoC 2026 ideas page",
-    "url": "https://github.com/OWASP/www-community/pull/1326",
-    "status": "closed",
-    "date": "Closed",
-    "forge": "GitHub OWASP"
   }
 ]
